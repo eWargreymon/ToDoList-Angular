@@ -1,0 +1,17 @@
+<h1>Lista de Tareas pendientes</h1>
+
+<h3 *ngIf="lista.length==0" class="noTareas">No hay tareas pendientes, ¡Felicidades!</h3>
+
+<div class="lista">
+    <div class="tarea" *ngFor="let t of lista; let i=index" [ngClass]="{'completa':t.complete,'incompleta':!t.complete}">
+        <div class="top-side">
+            <h2 class="titulo">{{t.title}}</h2>
+            <h5 class="desc">{{t.description}}</h5>
+            <p *ngIf="t.complete==false">Prioridad:{{t.priority}}</p>
+        </div>
+        <div class="bot-side">
+            <button class=" btn btn-sm btn-success mr-1 controles" (click)="completada(i)" *ngIf="t.complete==false">Completada</button>
+            <button class=" btn btn-sm btn-danger controles" (click)="eliminada(i)">Eliminar</button>
+        </div>
+    </div>
+</div>
